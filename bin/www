@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+const http = require('http');
+
+const port = process.env.PORT || 3000; 
+const app = require('../app');
+app.set('port', port);
+
+const server = http.createServer(app);
+server.on('listening', function() {
+    var address = server.address();
+    console.log(`${address.address}:${address.port}`);
+});
+
+server.on('error', function(err) {
+    console.error(`${err.code}: ${err.message}`);
+})
+
+server.listen(port);
+
+
+
